@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftCart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+
+  <style>
+    .hero-bg {
+      background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body class="bg-base-200">
+
+<!-- NAVBAR  -->
+<nav class="navbar bg-base-100 shadow-md px-6">
+  <div class="navbar-start">
+    <a class="text-2xl font-bold text-primary">SwiftCart</a>
+  </div>
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 font-medium">
+      <li><a class="active">Home</a></li>
+      <li><a href="products.html">>Products</a></li>
+      <li><a>About</a></li>
+      <li><a>Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="navbar-end">
+    <button class="btn btn-ghost relative" onclick="openCart()">
+      🛒
+      <span id="cart-count"
+        class="badge badge-primary absolute -top-2 -right-2 text-white">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero min-h-[70vh] hero-bg text-white">
+  <div class="hero-overlay bg-black bg-opacity-60"></div>
+  <div class="hero-content text-center">
+    <div>
+      <h1 class="text-5xl font-bold mb-4">Best Collection For You</h1>
+      <p class="mb-6">Discover the latest trends in fashion, electronics and more.</p>
+      <a href="#products" class="btn btn-primary">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-16 text-center bg-base-100">
+  <h2 class="text-3xl font-bold mb-10">Why Choose Us</h2>
+  <div class="grid md:grid-cols-4 gap-6 px-6">
+    <div class="card bg-base-200 p-6">
+      <h3 class="font-bold"> Fast Delivery</h3>
+      <p>Quick doorstep delivery service.</p>
+    </div>
+    <div class="card bg-base-200 p-6">
+      <h3 class="font-bold"> 24/7 Support</h3>
+      <p>Support team available anytime.</p>
+    </div>
+    <div class="card bg-base-200 p-6">
+      <h3 class="font-bold"> Secure Payment</h3>
+      <p>Safe and encrypted transactions.</p>
+    </div>
+    <div class="card bg-base-200 p-6">
+      <h3 class="font-bold">↩ Easy Returns</h3>
+      <p>30 days return policy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Trending Now  -->
+<section id="products" class="py-16 px-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Trending Now</h2>
+
+  <!-- Categories -->
+  <div id="categories" class="flex flex-wrap justify-center gap-3 mb-8"></div>
+
+  <!-- Loading -->
+  <div id="loader" class="flex justify-center hidden">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+
+  <!-- Product Grid -->
+  <div id="product-container" class="grid md:grid-cols-3 gap-6"></div>
+</section>
+
+<!-- MODAL -->
+<dialog id="productModal" class="modal">
+  <div class="modal-box max-w-2xl">
+    <h3 id="modal-title" class="font-bold text-lg mb-3"></h3>
+    <img id="modal-image" class="w-48 mx-auto mb-4" />
+    <p id="modal-description" class="mb-4"></p>
+    <p class="font-bold text-xl mb-2">$<span id="modal-price"></span></p>
+    <p>Rating: <span id="modal-rating"></span></p>
+    <div class="modal-action">
+      <button class="btn btn-primary" onclick="addToCart(currentProduct)">Add to Cart</button>
+      <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<!--  CART MODAL -->
+<dialog id="cartModal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Your Cart</h3>
+    <div id="cart-items"></div>
+    <p class="mt-4 font-bold">Total: $<span id="cart-total">0</span></p>
+    <div class="modal-action">
+      <button class="btn" onclick="closeCart()">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- FOOTER -->
+<footer class="bg-neutral text-neutral-content p-10 mt-10">
+  <div class="footer">
+    <div>
+      <span class="footer-title">SwiftCart</span>
+      <p>Your one-stop shop for fashion and electronics.</p>
+    </div>
+    <div>
+      <span class="footer-title">Quick Links</span>
+      <a class="link link-hover">Home</a>
+      <a class="link link-hover">Products</a>
+      <a class="link link-hover">Contact</a>
+    </div>
+    <div>
+      <span class="footer-title">Newsletter</span>
+      <div class="form-control">
+        <input type="email" placeholder="Enter your email"
+          class="input input-bordered w-full max-w-xs mb-2" />
+        <button class="btn btn-primary">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-6">
+    © 2025 SwiftCart. All rights reserved.
+  </div>
+</footer>
+</body>
+<script src="index.js"></script>
+</html>
