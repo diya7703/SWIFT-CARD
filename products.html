@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SwiftCart - Products</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet"/>
+</head>
+
+<body class="bg-base-200">
+
+<!-- NAVBAR -->
+<nav class="navbar bg-base-100 shadow px-8">
+  <div class="navbar-start">
+    <a href="index.html" class="text-xl font-bold text-primary">SwiftCart</a>
+  </div>
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 font-medium">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="text-primary font-semibold">Products</a></li>
+      <li><a>About</a></li>
+      <li><a>Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="navbar-end">
+    <button class="btn btn-ghost relative">
+      🛒
+      <span id="cart-count"
+        class="badge badge-primary absolute -top-2 -right-2 text-white">0</span>
+    </button>
+  </div>
+</nav>
+
+<!--PAGE TITLE-->
+<section class="py-12 text-center">
+  <h2 class="text-3xl font-bold mb-6">Our Products</h2>
+
+  <!-- Categories -->
+  <div id="category-container" class="flex flex-wrap justify-center gap-3"></div>
+</section>
+
+<!-- PRODUCTS GRID -->
+<section class="px-10 pb-20">
+  <div id="loader" class="flex justify-center hidden">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+
+  <div id="product-container"
+       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  </div>
+</section>
+
+<!-- MODAL -->
+<dialog id="productModal" class="modal">
+  <div class="modal-box max-w-2xl">
+    <h3 id="modal-title" class="font-bold text-lg mb-4"></h3>
+    <img id="modal-image" class="h-48 mx-auto object-contain mb-4"/>
+    <p id="modal-description" class="mb-4"></p>
+    <p class="font-bold text-xl mb-2">$<span id="modal-price"></span></p>
+    <p class="mb-4">⭐ <span id="modal-rating"></span></p>
+
+    <div class="modal-action">
+      <button class="btn btn-primary" id="modal-add">Add to Cart</button>
+      <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<!--  FOOTER -->
+<footer class="bg-neutral text-neutral-content p-10">
+  <div class="footer">
+    <div>
+      <span class="footer-title">SwiftCart</span>
+      <p>Your one-stop shop for all your fashion and lifestyle needs.</p>
+    </div>
+
+    <div>
+      <span class="footer-title">Quick Links</span>
+      <a class="link link-hover">Home</a>
+      <a class="link link-hover">Products</a>
+      <a class="link link-hover">About</a>
+      <a class="link link-hover">Contact</a>
+    </div>
+
+    <div>
+      <span class="footer-title">Subscribe to our Newsletter</span>
+      <div class="form-control">
+        <div class="input-group">
+          <input type="email" placeholder="Enter your email"
+                 class="input input-bordered"/>
+          <button class="btn btn-primary">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-6">
+    © 2025 SwiftCart, Inc. All rights reserved.
+  </div>
+</footer>
+</body>
+<script src="products.js"></script>
+</html>
