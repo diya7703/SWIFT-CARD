@@ -7,13 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
 
-  <style>
-    .hero-bg {
-      background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da');
-      background-size: cover;
-      background-position: center;
-    }
-  </style>
+  
 </head>
 
 <body class="bg-base-200">
@@ -27,7 +21,7 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1 font-medium">
       <li><a class="active">Home</a></li>
-      <li><a href="products.html">>Products</a></li>
+      <li><a href="products.html">Products</a></li>
       <li><a>About</a></li>
       <li><a>Contact</a></li>
     </ul>
@@ -43,16 +37,25 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero min-h-[70vh] hero-bg text-white">
-  <div class="hero-overlay bg-black bg-opacity-60"></div>
-  <div class="hero-content text-center">
-    <div>
-      <h1 class="text-5xl font-bold mb-4">Best Collection For You</h1>
-      <p class="mb-6">Discover the latest trends in fashion, electronics and more.</p>
-      <a href="#products" class="btn btn-primary">Shop Now</a>
-    </div>
+<section class="relative min-h-[70vh] flex items-center justify-center text-white">
+
+  <!-- Background Image -->
+  <img src="Assets/banner-image.png"
+       class="absolute inset-0 w-full h-full object-cover ">
+
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black opacity-60 "></div>
+
+  <!-- Content -->
+  <div class="text-center z-10">
+    <h1 class="text-5xl font-bold mb-4">Best Collection For You</h1>
+    <p class="mb-6">Discover the latest trends in fashion, electronics and more.</p>
+    <a href="#products" class="btn btn-primary">Shop Now</a>
   </div>
+
 </section>
+
+
 
 <!-- FEATURES -->
 <section class="py-16 text-center bg-base-100">
