@@ -28,8 +28,7 @@
   </div>
 
   <div class="navbar-end">
-    <button class="btn btn-ghost relative" onclick="openCart()">
-      🛒
+    <button class="btn btn-ghost relative" onclick="openCart()"><img class="w-10 h-10" src="Assets/cart.png">
       <span id="cart-count"
         class="badge badge-primary absolute -top-2 -right-2 text-white">0</span>
     </button>
@@ -38,43 +37,36 @@
 
 <!-- HERO -->
 <section class="relative min-h-[70vh] flex items-center justify-center text-white">
-
-  <!-- Background Image -->
   <img src="Assets/banner-image.png"
        class="absolute inset-0 w-full h-full object-cover ">
-
-  <!-- Dark Overlay -->
   <div class="absolute inset-0 bg-black opacity-60 "></div>
-
-  <!-- Content -->
   <div class="text-center z-10">
     <h1 class="text-5xl font-bold mb-4">Best Collection For You</h1>
     <p class="mb-6">Discover the latest trends in fashion, electronics and more.</p>
     <a href="#products" class="btn btn-primary">Shop Now</a>
   </div>
-
 </section>
-
 
 
 <!-- FEATURES -->
 <section class="py-16 text-center bg-base-100">
-  <h2 class="text-3xl font-bold mb-10">Why Choose Us</h2>
+  <h2 class="text-3xl font-bold mb-2">Why Choose Us</h2>
+  <p class="mb-7">We provide the best shopping experience with top-notch sevices</p>
   <div class="grid md:grid-cols-4 gap-6 px-6">
     <div class="card bg-base-200 p-6">
-      <h3 class="font-bold"> Fast Delivery</h3>
+      <h3 class="font-bold"><img class="w-10 h-10" src="Assets/fast-delivery.png"> Fast Delivery</h3>
       <p>Quick doorstep delivery service.</p>
     </div>
     <div class="card bg-base-200 p-6">
-      <h3 class="font-bold"> 24/7 Support</h3>
+      <h3 class="font-bold"><img class="w-10 h-10" src="Assets/support.png">24/7 Support</h3>
       <p>Support team available anytime.</p>
     </div>
     <div class="card bg-base-200 p-6">
-      <h3 class="font-bold"> Secure Payment</h3>
+      <h3 class="font-bold"><img class="w-10 h-10" src="Assets/secure.png">Secure Payment</h3>
       <p>Safe and encrypted transactions.</p>
     </div>
     <div class="card bg-base-200 p-6">
-      <h3 class="font-bold">↩ Easy Returns</h3>
+      <h3 class="font-bold"><img class="w-10 h-10" src="Assets/return.png">Easy Returns</h3>
       <p>30 days return policy.</p>
     </div>
   </div>
@@ -134,10 +126,19 @@
       <span class="footer-title">Quick Links</span>
       <a class="link link-hover">Home</a>
       <a class="link link-hover">Products</a>
+      <a class="link link-hover">About</a>
       <a class="link link-hover">Contact</a>
     </div>
     <div>
-      <span class="footer-title">Newsletter</span>
+      <span class="footer-title">Support</span>
+      <a class="link link-hover">FAQ</a>
+      <a class="link link-hover">Shipping</a>
+      <a class="link link-hover">Returns</a>
+      <a class="link link-hover">Privacy Policy</a>
+    </div>
+    <div>
+      <span class="footer-title">Subscribe to our Newsletter</span>
+      <p>The latest news,articles and resources sent to yourinbox weekly</p>
       <div class="form-control">
         <input type="email" placeholder="Enter your email"
           class="input input-bordered w-full max-w-xs mb-2" />

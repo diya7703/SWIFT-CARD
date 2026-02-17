@@ -2,39 +2,47 @@ const API = "https://fakestoreapi.com/products";
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let selectedProduct = null;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
   loadCategories();
   loadProducts();
   updateCartCount();
-});
+}
 
-function showLoader(show){
+/* FETCH HELPER */
+async function fetchData(url) {
+  const res = await fetch(url);
+  return await res.json();
+}
+
+/* LOADER */
+function showLoader(show) {
   document.getElementById("loader").classList.toggle("hidden", !show);
 }
 
-async function loadCategories(){
-  const res = await fetch(API + "/categories");
-  const categories = await res.json();
+/* CATEGORIES */
+async function loadCategories() {
+  const categories = await fetchData(`${API}/categories`);
   const container = document.getElementById("category-container");
 
-  const allBtn = createCategoryButton("All", "");
-  container.appendChild(allBtn);
+  container.appendChild(createCategoryButton("All", ""));
 
-  categories.forEach(cat=>{
-    const formatted =
-      cat.charAt(0).toUpperCase() + cat.slice(1);
+  categories.forEach(cat => {
+    const formatted = cat.charAt(0).toUpperCase() + cat.slice(1);
     container.appendChild(createCategoryButton(formatted, cat));
   });
 }
 
-function createCategoryButton(name, value){
+function createCategoryButton(text, value) {
   const btn = document.createElement("button");
   btn.className = "btn btn-sm btn-outline";
-  btn.innerText = name;
+  btn.innerText = text;
 
-  btn.onclick = ()=>{
-    document.querySelectorAll("#category-container button")
-      .forEach(b=>b.classList.remove("btn-primary"));
+  btn.onclick = () => {
+    document
+      .querySelectorAll("#category-container button")
+      .forEach(b => b.classList.remove("btn-primary"));
 
     btn.classList.add("btn-primary");
     loadProducts(value);
@@ -43,27 +51,28 @@ function createCategoryButton(name, value){
   return btn;
 }
 
-async function loadProducts(category=""){
+/* PRODUCTS */
+async function loadProducts(category = "") {
   showLoader(true);
+
   const url = category ? `${API}/category/${category}` : API;
-  const res = await fetch(url);
-  const products = await res.json();
+  const products = await fetchData(url);
+
   showLoader(false);
   displayProducts(products);
 }
 
-function displayProducts(products){
+function displayProducts(products) {
   const container = document.getElementById("product-container");
   container.innerHTML = "";
 
-  products.forEach(product=>{
+  products.forEach(product => {
     const card = document.createElement("div");
     card.className = "card bg-base-100 shadow";
 
     card.innerHTML = `
       <figure class="p-6 bg-base-200">
-        <img src="${product.image}"
-             class="h-40 object-contain"/>
+        <img src="${product.image}" class="h-40 object-contain"/>
       </figure>
 
       <div class="card-body p-4">
@@ -99,9 +108,9 @@ function displayProducts(products){
   });
 }
 
-async function openModal(id){
-  const res = await fetch(`${API}/${id}`);
-  const product = await res.json();
+/* MODAL*/
+async function openModal(id) {
+  const product = await fetchData(`${API}/${id}`);
   selectedProduct = product;
 
   document.getElementById("modal-title").innerText = product.title;
@@ -109,27 +118,30 @@ async function openModal(id){
   document.getElementById("modal-description").innerText = product.description;
   document.getElementById("modal-price").innerText = product.price;
   document.getElementById("modal-rating").innerText =
-      `${product.rating.rate} (${product.rating.count})`;
+    `${product.rating.rate} (${product.rating.count})`;
 
   document.getElementById("modal-add").onclick =
-      ()=> addToCart(product.id);
+    () => addToCart(product.id);
 
   document.getElementById("productModal").showModal();
 }
 
-function closeModal(){
+function closeModal() {
   document.getElementById("productModal").close();
 }
 
-async function addToCart(id){
-  const res = await fetch(`${API}/${id}`);
-  const product = await res.json();
-
+/* CART */
+async function addToCart(id) {
+  const product = await fetchData(`${API}/${id}`);
   cart.push(product);
+  saveCart();
+}
+
+function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
 }
 
-function updateCartCount(){
+function updateCartCount() {
   document.getElementById("cart-count").innerText = cart.length;
 }
